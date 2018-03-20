@@ -3,7 +3,6 @@ package com.aakash.Controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -53,21 +52,19 @@ public class StudentController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		//FOR CHECKBOX
+
+		// FOR CHECKBOX
 		String[] subjects = request.getParameterValues("subject");
 		String subject = "";
 		for (String sub : subjects) {
 			subject = subject + sub + "/";
 		}
-		student.setSubject("");
-		
-		//FOR IMAGE
+		student.setSubject(subject);
+
+		// FOR IMAGE
 		System.out.println(request.getPart("photo"));
 		student.setImageUrl("");
-		
-		
+
 		studentdao.saveStudentInfo(student);
 
 	}
