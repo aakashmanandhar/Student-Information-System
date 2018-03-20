@@ -6,38 +6,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
+
+<link rel="stylesheet" href="resources/css/login.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+
+<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/login.js"></script>
+
 </head>
 <body>
 
 	<%
-		Cookie[] cookies= request.getCookies();
-		
-		for(Cookie c : cookies){
-			if(c.getName().equals("uname")){
+		Cookie[] cookies = request.getCookies();
+
+		for (Cookie c : cookies) {
+			if (c.getName().equals("uname")) {
 				request.setAttribute("username", c.getValue());
-			}else if(c.getName().equals("pass")){
+			} else if (c.getName().equals("pass")) {
 				request.setAttribute("password", c.getValue());
 			}
 		}
 	%>
 
-	<div>
-		<form action="LoginController" method="post">
-			<span style="color: red">${loginFail}</span>
-			<span style="color: blue">${loggedOut}</span>
-			<div>
-				<label>Username</label> <input type="text" name="uname" value="${username}">
+	<div class="card card-container">
+		<img id="profile-img" class="profile-img-card"
+			src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+		<p id="profile-name" class="profile-name-card"></p>
+		<form class="form-signin" action="LoginController" method="post">
+			<span style="color: red">${loginFail}</span> <span
+				style="color: blue">${loggedOut}</span> <span id="reauth-email"
+				class="reauth-email"></span> <input type="text" id="inputEmail"
+				class="form-control" name="uname" value="${username}"> <input
+				type="password" id="inputPassword" class="form-control" name="pass"
+				value="${password}">
+			<div id="remember" class="checkbox">
+				<label> <input type="checkbox" value="remember-me">
+					Remember me
+				</label>
 			</div>
-			<div>
-				<label>Password</label> <input type="password" name="pass" value="${password}">
-			</div>
-			<div>
-				<input type="checkbox" name="remember-me">Remember-Me
-			</div>
-			<div>
-				<input type="submit" value="submit">
-			</div>
+			<button class="btn btn-lg btn-primary btn-block btn-signin"
+				type="submit">Sign in</button>
 		</form>
+		<!-- /form -->
+		<a href="#" class="forgot-password"> Forgot the password? </a>
 	</div>
-</body>
-</html>
