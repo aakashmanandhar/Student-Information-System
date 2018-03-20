@@ -1,40 +1,52 @@
 <%@ include file="header.jsp"%>
 
 <div>
-	<form action="StudentController" method="post" enctype="multipart/form-data">
-		<span style="color: red">${loginFail}</span> <span style="color: blue">${loggedOut}</span>
+	<form action="StudentController" method="post"
+		enctype="multipart/form-data">
+		<span> <input type="hidden" name="id" value="${student.id}">
+		</span>
 		<div>
-			<label>Student Name</label> <input type="text" name="sname" value="">
+			<label>Student Name</label> <input type="text" name="sname"
+				value="${student.studentName}">
 		</div>
 		<div>
-			<label>College Name</label> <input type="text" name="cname">
+			<label>College Name</label> <input type="text" name="cname"
+				value="${student.collegeName}">
 		</div>
 		<div>
-			<label>E-Mail</label> <input type="email" name="email">
+			<label>E-Mail</label> <input type="email" name="email"
+				value="${student.email}">
 		</div>
 		<div>
-			<label>Roll No.</label> <input type="number" name="roll">
+			<label>Roll No.</label> <input type="number" name="roll"
+				value="${student.roll}">
 		</div>
 		<div>
-			<label>DOB</label> <input type="date" name="dob">
+			<label>DOB</label> <input type="date" name="dob"
+				value="${student.dob}">
 		</div>
 		<div>
-			<label>Gender</label> <input type="radio" name="gender" value="Male">Male
-			<input type="radio" name="gender" value="Female">Female
+			<label>Gender</label> <input type="radio" name="gender" value="Male"
+				${student.gender=='Male'?'checked':''}>Male <input
+				type="radio" name="gender" value="Female"
+				${student.gender=='Female'?'checked':''}>Female
 		</div>
 		<div>
 			<label>Departments</label> <select name="department">
-				<option value="IT">IT</option>
-				<option value="Computer">Computer</option>
+				<option value="IT" ${student.department=='IT'?'selected':''}>IT</option>
+				<option value="Computer"
+					${student.department=='Computer'?'selected':''}>Computer</option>
 			</select>
 		</div>
 		<div>
-			<label>Subject</label> <input type="checkbox" name="subject" value="Java">Java
-			<input type="checkbox" name="subject" value="PHP">PHP
+			<label>Subject</label> <input type="checkbox" name="subject"
+				value="Java"
+				<c:if test="${fn:contains(student.subject, 'Java')}">checked</c:if>>Java
+			<input type="checkbox" name="subject" value="PHP"
+				<c:if test="${fn:contains(student.subject, 'PHP')}">checked</c:if>>PHP
 		</div>
 		<div>
-			<label>Upload</label>
-			<input type="file" name="photo">
+			<label>Upload</label> <input type="file" name="photo">
 		</div>
 		<div>
 			<input type="submit" value="submit">

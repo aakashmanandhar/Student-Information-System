@@ -23,6 +23,9 @@ public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	StudentDAO studentdao = new StudentDAOImpl();
+	private static final String STUDENT_LIST = "studentList.jsp";
+	private static final String STUDENT_FORM = "studentForm.jsp";
+
 	String forward = "";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,10 +34,18 @@ public class StudentController extends HttpServlet {
 		String action = request.getParameter("actions");
 
 		if (action.equals("student_new")) {
-			forward = "studentForm.jsp";
+			forward = STUDENT_FORM;
+		} else if (action.equals("student_delete")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			studentdao.deleteStudentInfo(id);
+			request.setAttribute("students", studentdao.getAllStudentInfo());
 		} else if (action.equals("student_list")) {
 			request.setAttribute("students", studentdao.getAllStudentInfo());
-			forward = "studentList.jsp";
+			forward = STUDENT_LIST;
+		} else if (action.equals("student_edit")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			request.setAttribute("student", studentdao.getStudentInfoById(id));
+			forward = STUDENT_FORM;
 		}
 
 		RequestDispatcher rd = request.getRequestDispatcher(forward);
@@ -75,8 +86,16 @@ public class StudentController extends HttpServlet {
 		System.out.println(request.getPart("photo"));
 		student.setImageUrl("");
 
-		studentdao.saveStudentInfo(student);
+		String studentId = request.getParameter("id");
 
+		if (studentId == null || studentId.isEmpty()) {
+			studentdao.saveStudentInfo(student);
+		} else {
+			student.setId(Integer.parseInt(studentId));
+			studentdao.updateStudentInfo(student);
+		}
+
+		response.sendRedirect("StudentController?actions=student_list");
 	}
 
 }
