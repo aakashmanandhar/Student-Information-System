@@ -12,7 +12,7 @@ public interface StudentDAO {
 
 	public void deleteStudentInfo(int id);
 
-	public List<Student> getAllStudentInfo(int id);
+	public List<Student> getAllStudentInfo();
 
 	public Student getStudentInfoById(int id);
 

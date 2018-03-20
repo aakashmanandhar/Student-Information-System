@@ -23,11 +23,21 @@ public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	StudentDAO studentdao = new StudentDAOImpl();
+	String forward = "";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher rd = request.getRequestDispatcher("studentForm.jsp");
+		String action = request.getParameter("actions");
+
+		if (action.equals("student_new")) {
+			forward = "studentForm.jsp";
+		} else if (action.equals("student_list")) {
+			request.setAttribute("students", studentdao.getAllStudentInfo());
+			forward = "studentList.jsp";
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher(forward);
 		rd.forward(request, response);
 
 	}

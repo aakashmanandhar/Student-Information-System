@@ -75,7 +75,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public List<Student> getAllStudentInfo(int id) {
+	public List<Student> getAllStudentInfo() {
 		List<Student> studentList = new ArrayList<>();
 		String sql = "SELECT * FROM student_tbl";
 
