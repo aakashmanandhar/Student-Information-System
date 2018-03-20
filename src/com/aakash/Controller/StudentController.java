@@ -1,7 +1,10 @@
 package com.aakash.Controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,15 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.aakash.DAO.StudentDAO;
+import com.aakash.DAO.StudentDAOImpl;
+import com.aakash.DTO.Student;
 
 @WebServlet("/StudentController")
 @MultipartConfig
 public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	StudentDAO studentdao = new StudentDAOImpl();
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("studentForm.jsp");
 		rd.forward(request, response);
 
@@ -27,13 +35,40 @@ public class StudentController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		Student student = new Student();
+		student.setStudentName(request.getParameter("sname"));
+		student.setCollegeName(request.getParameter("cname"));
+		student.setEmail(request.getParameter("email"));
+		student.setDepartment(request.getParameter("department"));
+		student.setGender(request.getParameter("gender"));
+		student.setRoll(Integer.parseInt(request.getParameter("roll")));
+
+		// FOR DATE
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date d = sdf.parse(request.getParameter("dob"));
+			student.setDob(d);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		System.out.println(request.getParameter("sname"));
-		System.out.println(request.getParameter("gender"));
-		System.out.println(request.getParameter("department"));
-		System.out.println(request.getParameter("dob"));
-		System.out.println(Arrays.toString(request.getParameterValues("subject")));
+		
+		//FOR CHECKBOX
+		String[] subjects = request.getParameterValues("subject");
+		String subject = "";
+		for (String sub : subjects) {
+			subject = subject + sub + "/";
+		}
+		student.setSubject("");
+		
+		//FOR IMAGE
 		System.out.println(request.getPart("photo"));
+		student.setImageUrl("");
+		
+		
+		studentdao.saveStudentInfo(student);
 
 	}
 

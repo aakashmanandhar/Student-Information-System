@@ -10,6 +10,9 @@
 			<label>College Name</label> <input type="text" name="cname">
 		</div>
 		<div>
+			<label>E-Mail</label> <input type="email" name="email">
+		</div>
+		<div>
 			<label>Roll No.</label> <input type="number" name="roll">
 		</div>
 		<div>
