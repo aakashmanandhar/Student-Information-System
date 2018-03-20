@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Header</title>
+<title>Student Information System</title>
 </head>
 <body>
 <div>
 	<a href="home.jsp">Home</a>
+	<a href="StudentController">Student</a>
 	<a href="LoginController">Logout</a>
