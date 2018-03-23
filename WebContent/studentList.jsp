@@ -1,7 +1,6 @@
 <%@ include file="header.jsp"%>
 <div>
 <a class="btn btn-primary pull-right" href="StudentController?actions=student_new" role="button"><i class="glyphicon glyphicon-plus"></i></a>
-<!-- 	<a href="StudentController?actions=student_new" class="btn btn-success pull-right" role="button"><i class="glyphicon glyphicon-plus"></i></a> -->
 </div><br>
 <c:if test="${!empty students}">
 	<table class="table table-striped">

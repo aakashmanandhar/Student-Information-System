@@ -42,8 +42,9 @@
 								${student.gender=='Female'?'checked':''}>Female
 						</div>
 						<div class="form-group">
-							<label for="department">Departments</label> <select
-								id="department" class="form-control" name="department">
+							<label for="department">Departments</label> 
+							<select
+								id="department" name="department" class="form-control">
 								<option value="IT" ${student.department=='IT'?'selected':''}>IT</option>
 								<option value="Computer"
 									${student.department=='Computer'?'selected':''}>Computer</option>
@@ -58,7 +59,7 @@
 								<c:if test="${fn:contains(student.subject, 'PHP')}">checked</c:if>>PHP
 						</div>
 						<div class="form-group">
-							<label>Upload</label> <input type="file" name="photo">
+							<label>Upload</label> <input type="file" name="photo" class="form-control">
 						</div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-primary btn-lg"

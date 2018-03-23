@@ -11,7 +11,8 @@
 
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/bootstrap3.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 
@@ -19,7 +20,8 @@
 <body>
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-			<a class="navbar-brand" href="home.jsp">Student Information System</a>
+			<a class="navbar-brand" href="home.jsp">Student Information
+				System</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -33,6 +35,8 @@
 						href="home.jsp">Home <span class="sr-only">(current)</span></a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="StudentController?actions=student_list">Student</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="UserController?actions=user_list">User</a></li>
 					<li class="nav-item active dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -44,5 +48,6 @@
 							<a class="dropdown-item" href="LoginController">Logout</a>
 						</div></li>
 				</ul>
+
 			</div>
 		</nav>
