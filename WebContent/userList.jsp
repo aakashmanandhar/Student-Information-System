@@ -23,7 +23,7 @@
 					<td><c:out value="${u.userName}" /></td>
 					<td><c:out value="${u.password}" /></td>
 					<td><c:out value="${u.email}" /></td>
-					<td><img src="" alt="pic" width="50px" height="50px" /></td>
+					<td><img src="UserImageDisplayController?userId=${u.id}" alt="pic" width="50px" height="50px" /></td>
 					<td>
 						<a href="UserController?actions=user_edit&id=${u.id}"><i class="glyphicon glyphicon-edit"></i></a>
 						&nbsp;&nbsp;&nbsp; 

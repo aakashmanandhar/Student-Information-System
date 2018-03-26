@@ -33,7 +33,7 @@
 					<td><c:out value="${s.department}" /></td>
 					<td><c:out value="${s.subject}" /></td>
 					<td><c:out value="${s.roll}" /></td>
-					<td><img src="ImageDisplayController?studentId=${s.id}" alt="pic" width="50px" height="50px" /></td>
+					<td><img src="StudentImageDisplayController?studentId=${s.id}" alt="pic" width="50px" height="50px" /></td>
 					<td>
 						<a href="StudentController?actions=student_edit&id=${s.id}"><i class="glyphicon glyphicon-edit"></i></a>
 						&nbsp;&nbsp;&nbsp; 

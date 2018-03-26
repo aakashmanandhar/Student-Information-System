@@ -9,10 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.aakash.DAO.UserDAO;
 import com.aakash.DAO.UserDAOImpl;
 import com.aakash.DTO.User;
+import com.aakash.Util.ImageUtil;
 
 @WebServlet("/UserController")
 @MultipartConfig
@@ -57,10 +59,22 @@ public class UserController extends HttpServlet {
 		user.setEmail(request.getParameter("email"));
 		user.setUserName(request.getParameter("uname"));
 		user.setPassword(request.getParameter("pass"));
-		System.out.println(request.getPart("photo"));
-		user.setImageUrl("");
-		
+
+		// FOR IMAGE
+
 		String userId = request.getParameter("id");
+
+		Part part = request.getPart("photo");
+		String fileName = ImageUtil.getFileName(part);
+		String imageUrl = "";
+		if (!fileName.isEmpty()) {
+			imageUrl = ImageUtil.writeImageToFile(part, ImageUtil.IMAGE_UPLOAD_PATH + fileName);
+		} else {
+			imageUrl = userdao.getImageUrlById(Integer.parseInt(userId));
+		}
+
+		user.setImageUrl(imageUrl);
+
 
 		if (userId == null || userId.isEmpty()) {
 			userdao.saveUserInfo(user);
