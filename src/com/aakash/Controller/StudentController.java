@@ -12,10 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.aakash.DAO.StudentDAO;
 import com.aakash.DAO.StudentDAOImpl;
 import com.aakash.DTO.Student;
+import com.aakash.Util.ImageUtil;
 
 @WebServlet("/StudentController")
 @MultipartConfig
@@ -83,10 +85,19 @@ public class StudentController extends HttpServlet {
 		student.setSubject(subject);
 
 		// FOR IMAGE
-		System.out.println(request.getPart("photo"));
-		student.setImageUrl("");
 
 		String studentId = request.getParameter("id");
+
+		Part part = request.getPart("photo");
+		String fileName = ImageUtil.getFileName(part);
+		String imageUrl = "";
+		if (!fileName.isEmpty()) {
+			imageUrl = ImageUtil.writeImageToFile(part, ImageUtil.IMAGE_UPLOAD_PATH + fileName);
+		} else {
+			imageUrl = studentdao.getImageUrlById(Integer.parseInt(studentId));
+		}
+
+		student.setImageUrl(imageUrl);
 
 		if (studentId == null || studentId.isEmpty()) {
 			studentdao.saveStudentInfo(student);
