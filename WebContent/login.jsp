@@ -41,8 +41,8 @@
 				type="password" id="inputPassword" class="form-control" name="pass"
 				value="${password}">
 			<div id="remember" class="checkbox">
-				<label> <input type="checkbox" value="remember-me">
-					Remember me
+				<label> <input type="checkbox" name="remember-me"
+					value="remember-me"> Remember me
 				</label>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block btn-signin"

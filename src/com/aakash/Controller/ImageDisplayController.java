@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.aakash.DAO.StudentDAO;
 import com.aakash.DAO.StudentDAOImpl;
+import com.aakash.DAO.UserDAO;
+import com.aakash.DAO.UserDAOImpl;
 
-@WebServlet("/StudentImageDisplayController")
-public class StudentImageDisplayController extends HttpServlet {
+@WebServlet("/ImageDisplayController")
+public class ImageDisplayController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final int DEFAULT_BUFFER_SIZE = 1024;
@@ -24,8 +26,15 @@ public class StudentImageDisplayController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String studentId = request.getParameter("studentId");
-		StudentDAO studentdao = new StudentDAOImpl();
-		String imagePath = studentdao.getImageUrlById(Integer.parseInt(studentId));
+		String imagePath = "";
+		if(studentId != null) {
+			StudentDAO studentdao = new StudentDAOImpl();
+			imagePath = studentdao.getImageUrlById(Integer.parseInt(studentId));
+		}else {
+			UserDAO userdao = new UserDAOImpl();
+			String userId = request.getParameter("userId");
+			imagePath = userdao.getUserInfoById(Integer.parseInt(userId)).getImageUrl();
+		}
 
 		File file = new File(imagePath);
 

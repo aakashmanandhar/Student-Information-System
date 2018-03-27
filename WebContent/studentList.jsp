@@ -1,7 +1,10 @@
 <%@ include file="header.jsp"%>
 <div>
-<a class="btn btn-primary pull-right" href="StudentController?actions=student_new" role="button"><i class="glyphicon glyphicon-plus"></i></a>
-</div><br>
+	<a class="btn btn-primary pull-right"
+		href="StudentController?actions=student_new" role="button"><i
+		class="glyphicon glyphicon-plus"></i></a>
+</div>
+<br>
 <c:if test="${!empty students}">
 	<table class="table table-striped">
 		<thead>
@@ -33,12 +36,13 @@
 					<td><c:out value="${s.department}" /></td>
 					<td><c:out value="${s.subject}" /></td>
 					<td><c:out value="${s.roll}" /></td>
-					<td><img src="StudentImageDisplayController?studentId=${s.id}" alt="pic" width="50px" height="50px" /></td>
-					<td>
-						<a href="StudentController?actions=student_edit&id=${s.id}"><i class="glyphicon glyphicon-edit"></i></a>
-						&nbsp;&nbsp;&nbsp; 
-						<a href="StudentController?actions=student_delete&id=${s.id}"><i class="glyphicon glyphicon-trash"></i></a>
-					</td>
+					<td><img src="ImageDisplayController?studentId=${s.id}"
+						alt="pic" width="50px" height="50px" /></td>
+					<td><a
+						href="StudentController?actions=student_edit&id=${s.id}"><i
+							class="glyphicon glyphicon-edit"></i></a> &nbsp;&nbsp;&nbsp; <a
+						href="StudentController?actions=student_delete&id=${s.id}"><i
+							class="glyphicon glyphicon-trash"></i></a></td>
 				</tr>
 			</c:forEach>
 
